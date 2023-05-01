@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Craigslist - housing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    a {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    h1 {
+      color: #0000EE;
+      font-size: large;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      background-color: #eee;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 15px;
+    }
+
+    .content {
+      background-color: #fff;
+      padding: 15px;
+      height: 125vh;
+      width: 10vw;
+      display: inline-block;
+      position: relative;
+      left: 0;
+    }
+
+    .nav {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      text-align: left;
+      position: relative;
+      top: -20px;
+    }
+
+    .nav-item {
+      display: block;
+      margin-right: 10px;
+    }
+
+    .account {
+      position: relative;
+      float: right;
+      top: -30px;
+    }
+    .listing {
+      display: inline-block;
+      position: absolute;
+      left: 250px;
+      top: 10px;
+      width: 60vw;
+    }
+    .listing-a{
+      font-size: x-large;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="bg-color-sky-light">
+      <div class="header">
+        <h2 style="margin: 0;"><a href="/">Craigslist</a></h2>
+        {% if is_logged_in %}
+        <a class="account" href="/housingcategory">post</a>
+        {% else %}
+        <a class="account" href="/account">my account</a>
+        {% endif %}
+      </div>
+      <div class="content">
+        <h1 style="position: relative;top: -20px;">housing</h1>
+        <ul class="nav">
+          <li class="nav-item"><a href="/realEstate">real estate for sale</a></li>
+          <li class="nav-item"><a href="/swap">housing swap</a></li>
+          <li class="nav-item"><a href="/apts">apartments</a></li>
+          <li class="nav-item"><a href="/parking">parking / storage</a></li>
+          <li class="nav-item"><a href="/vacay">vacation rentals</a></li>
+        </ul>
+        <div class="container">
+          <div class="listing">
+            {% for estate in estates %}
+            <a class="listing-a" href="{% url 'estate_listing_detail' estate.id %}">
+              {{ estate.address }} - {{ estate.bedrooms }}bd - {{ estate.price|floatformat:"0" }}<br><br>
+            </a>
+            {% endfor %}
+            {% for swap in swaps %}
+            <a class="listing-a" href="{% url 'swap_listing_detail' swap.id %}">
+              {{ swap.address }} - {{ swap.bedrooms }}bd - {{ swap.city }}<br><br>
+            </a>
+            {% endfor %}
+            {% for apt in apts %}
+            <a class="listing-a" href="{% url 'apt_listing_detail' apt.id %}">
+              {{ apt.address }} - {{ apt.bedrooms }}bd - {{ apt.price|floatformat:"0" }}<br><br>
+            </a>
+            {% endfor %}
+            {% for parking in parkings %}
+            <a class="listing-a" href="{% url 'parking_listing_detail' parking.id %}">
+              {{ parking.parking_name }} - {{ parking.size }} - {{ parking.price|floatformat:"0" }}<br><br>
+            </a>
+            {% endfor %}
+            {% for vacay in vacays %}
+            <a class="listing-a" href="{% url 'vacay_listing_detail' vacay.id %}">
+              {{ vacay.vacay_name }} - {{ vacay.address }} - {{ vacay.price|floatformat:"0" }}<br><br>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

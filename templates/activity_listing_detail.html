@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Craigslist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        a {
+            color: #0000EE;
+            text-decoration: none;
+        }
+
+        h1 {
+            color: #0000EE;
+            font-size: large;
+        }
+
+        .listh2 {
+            color: #0000EE;
+            font-size: xx-large;
+        }
+
+        .pbold {
+            font-weight: bold;
+            color: #000000;
+            display: inline-block;
+        }
+
+        .plist {
+            font-size: medium;
+            color: #3c3c41;
+            display: inline-block;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            background-color: #eee;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 15px;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 15px;
+            height: 100vh;
+            width: 10vw;
+            display: inline-block;
+            position: relative;
+            left: 0;
+        }
+
+        .nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            text-align: left;
+            position: relative;
+            top: -20px;
+        }
+
+        .nav-item {
+            display: block;
+            margin-right: 10px;
+        }
+
+        .account {
+            position: relative;
+            float: right;
+            top: -30px;
+        }
+
+        .car-listing {
+            display: inline-block;
+            position: absolute;
+            left: 250px;
+            top: 0px;
+            width: 30vw;
+        }
+
+        .bg-color-sky-light {
+            display: grid;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="bg-color-sky-light">
+            <div class="header">
+                <h2 style="margin: 0;"><a href="/">Craigslist</a></h2>
+                {% if is_logged_in %}
+                <a class="account" href="/createpostactivity">post</a>
+                {% else %}
+                <a class="account" href="/account">my account</a>
+                {% endif %}
+            </div>
+            <div class="content">
+                <h1 style="position: relative;top: -20px;">activities</h1>
+                <div class="container">
+                    <div class="car-listing">
+                        {% for activity in activitys %}
+                        {% if activity.id == activityID %}
+                        <h2 class="listh2">{{ activity.activity_name }}</h2>
+                        <ul style="list-style: none;">
+                            <li>
+                                <p class="pbold">Address: </p>
+                                <p class="plist">{{ activity.address }}</p>
+                            </li>
+                            <li>
+                                <p class="pbold">Type: </p>
+                                <p class="plist">{{ activity.activity_type }}</p>
+                            </li>
+                            <li>
+                                <p class="pbold">Needed Items: </p>
+                                <p class="plist">{{ activity.needed_items }}</p>
+                            </li>
+                            <li>
+                                <p class="pbold">Price: </p>
+                                <p class="plist">{{ activity.price|floatformat:"0" }}</p>
+                            </li>
+                            <li>
+                                <p class="pbold">Description: </p>
+                                <p class="plist">{{ activity.activity_description }}</p>
+                            </li>
+                            <li>
+                                <p class="pbold">City: </p>
+                                <p class="plist">{{ activity.city }}</p>
+                            </li>
+                            <li>
+                                <p class="pbold">Phone Number: </p>
+                                <p class="plist">{{ activity.phone_number }}</p>
+                            </li>
+                        </ul>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

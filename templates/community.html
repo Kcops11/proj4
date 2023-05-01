@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Craigslist - community</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    a {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    h1 {
+      color: #0000EE;
+      font-size: large;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      background-color: #eee;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 15px;
+    }
+
+    .content {
+      background-color: #fff;
+      padding: 15px;
+      height: 180vh;
+      width: 10vw;
+      display: inline-block;
+      position: relative;
+      left: 0;
+    }
+
+    .nav {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      text-align: left;
+      position: relative;
+      top: -20px;
+    }
+
+    .nav-item {
+      display: block;
+      margin-right: 10px;
+    }
+
+    .account {
+      position: relative;
+      float: right;
+      top: -30px;
+    }
+    .listing {
+      display: inline-block;
+      position: absolute;
+      left: 250px;
+      top: 10px;
+      width: 60vw;
+    }
+    .listing-a{
+      font-size: x-large;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="bg-color-sky-light">
+      <div class="header">
+        <h2 style="margin: 0;"><a href="/">Craigslist</a></h2>
+        {% if is_logged_in %}
+        <a class="account" href="/communitycategory">post</a>
+        {% else %}
+        <a class="account" href="/account">my account</a>
+        {% endif %}
+      </div>
+      <div class="content">
+        <h1 style="position: relative;top: -20px;">community</h1>
+        <ul class="nav">
+          <li class="nav-item"><a href="/activity">activities</a></li>
+          <li class="nav-item"><a href="/lost">lost and found</a></li>
+          <li class="nav-item"><a href="/child">childcare</a></li>
+          <li class="nav-item"><a href="/ride">rideshare</a></li>
+          <li class="nav-item"><a href="/volunteer">volunteers</a></li>
+        </ul>
+        <div class="container">
+          <div class="listing">
+            {% for activity in activitys %}
+              <a class="listing-a" href="{% url 'activity_listing_detail' activity.id %}">
+                {{ activity.activity_name }} - {{ activity.activity_type }} - {{ activity.city }}<br><br>
+              </a>
+            {% endfor %}
+            {% for lost in losts %}
+              <a class="listing-a" href="{% url 'lost_listing_detail' lost.id %}">
+                {{ lost.lost_name }} - {{ lost.lost_type }} - {{ lost.city }}<br><br>
+              </a>
+            {% endfor %}
+            {% for child in childs %}
+              <a class="listing-a" href="{% url 'child_listing_detail' child.id %}">
+                {{ child.child_name }} - {{ child.city }} - {{ child.price|floatformat:"0" }}<br><br>
+              </a>
+            {% endfor %}
+            {% for ride in rides %}
+              <a class="listing-a" href="{% url 'ride_listing_detail' ride.id %}">
+                {{ ride.ride_type }} - {{ ride.city }} - {{ ride.ride_price|floatformat:"0" }} <br><br>
+              </a>
+            {% endfor %}
+            {% for volunteer in volunteers %}
+              <a class="listing-a" href="{% url 'volunteer_listing_detail' volunteer.id %}">
+                {{ volunteer.volunteer_name }} - {{ volunteer.volunteer_type }} - {{ volunteer.city }}<br><br>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

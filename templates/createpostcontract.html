@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Craigslist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    a {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    h1 {
+      color: #0000EE;
+      font-size: large;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      background-color: #eee;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 15px;
+    }
+
+    .content {
+      background-color: #fff;
+      padding: 15px;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .nav {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      text-align: left;
+      position: relative;
+      top: -20px;
+    }
+
+    .nav-item {
+      display: block;
+      margin-right: 10px;
+    }
+
+    .account {
+      position: relative;
+      float: right;
+      top: -40px;
+    }
+
+    .form-container1 {
+      padding: 8px;
+      color: black;
+      border: none;
+      cursor: pointer;
+      font-size: medium;
+      align-self: center;
+    }
+
+    .form-container1 input[type="text"],
+    .form-container1 input[type="number"] {
+      width: 20vw;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+
+    .form-container1 input[type="submit"] {
+      padding: 8px;
+      margin-bottom: 10px;
+      width: 21vw;
+    }
+
+    .blog-grid-content {
+      display: grid;
+      justify-items: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="bg-color-sky-light">
+      <div class="header">
+        <h2 style="margin: 0;"><a href="/">Craigslist</a></h2>
+        <h1 class="account">contract work</h1>
+      </div>
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="blog-grid-content">
+                <form class="form-container1" method="post" action="{% url 'contractsubmit' %}">
+                  {% csrf_token %}
+                  <h2 class="formH2">create a post</h2>
+                  <input type="text" name="contract_name" placeholder="Name"><br><br>
+                  <input type="text" name="address" placeholder="Address"><br><br>
+                  <input type="text" name="contract_type" placeholder="Type"><br><br>
+                  <input type="text" name="contract_hours" placeholder="Hours"><br><br>
+                  <input type="text" name="wage" placeholder="Wage"><br><br>
+                  <input type="text" name="contract_description" placeholder="Description"><br><br>
+                  <input type="text" name="city" placeholder="City"><br><br>
+                  <input type="number" name="phone_number" placeholder="Phone number XXXXXXXXXX"><br><br>
+                  <input type="submit" class="form-container2" value="Create Post">
+                </form>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

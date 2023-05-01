@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Craigslist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+
+    a {
+      color: #0000EE;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .header {
+      padding: 5px 15px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      grid-area: header;
+      width: 300px;
+    }
+
+    .header-section {
+      background-color: #eee;
+      border-left: 1px solid #c0bfbf;
+      border-right: 1px solid #c0bfbf;
+      padding: 0 10px;
+    }
+
+    .header-section2 {
+      background-color: #eee;
+      border-left: 1px solid #c0bfbf;
+      border-right: 1px solid #c0bfbf;
+      padding: 0 10px;
+      height: 85vh;
+      width: 9vw;
+      position: relative;
+      left: 130px;
+    }
+
+    .header-left {
+      margin-right: 20px;
+    }
+
+    .header h2:last-child {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .nav {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      position: relative;
+      left: -11px;
+    }
+
+    .craigul {
+      font-size: small;
+      text-align: left;
+    }
+
+    .nav-item {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    .col {
+      float: left;
+      width: 33.33%;
+      text-align: center;
+      display: flex;
+    }
+
+    .col .cats {
+      display: inline-block;
+    }
+
+    .col ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .col li {
+      padding: 5px 0;
+    }
+
+    .lili {
+      border-bottom: 1px solid #ddd;
+    }
+
+    .ban {
+      text-align: center;
+      font-weight: bold;
+      padding: 2px 5px;
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      background-color: #eee;
+      width: 120px;
+      margin-bottom: 3px;
+    }
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: 0fr 0fr;
+      grid-template-rows: auto;
+      grid-template-areas: "header content";
+      justify-content: center;
+    }
+
+    .content {
+      margin: 0 auto;
+      padding: 16px 0 1em 0;
+      width: 740px;
+      display: grid;
+      justify-content: center;
+      overflow: hidden;
+      grid-area: content;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header" style="text-align: center;">
+      <div class="header-section2">
+        <h2 style="margin: 0;color: #0000EE;">Craigslist</h2>
+        <ul style="list-style: none;margin: 17px 0;position: relative; right: 20px;">
+          <li style="margin-bottom: 4px;">
+            <a href="/createpost" style="background-color: #ffc;">Create a posting</a>
+          </li>
+          <li style="margin-bottom: 4px;">
+            {% if is_logged_in %}
+            <a href="/logout">Logout</a>
+            {% else %}
+            <a href="/account">My account</a>
+            {% endif %}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <div class="content">
+      <h2 class="header-section header-left"
+        style="color: #222;opacity: .65; position: relative; width: 540px; left: -10.5px;top:-27px;text-align: center;height: 40px;">
+        ames, IA</h2>
+      <div class="nav" style="top: -140px;">
+        <div class="col">
+          <div class="cats" style="align-self: flex-start;">
+            <ul>
+              <h3 class="ban">
+                <li style="font-size:medium;font-weight: bold;"><a href="/sale">for sale</a></li>
+              </h3>
+              <ul class="craigul">
+                <li class="lili"><a href="/carsTrucks">cars + trucks</a></li>
+                <li class="lili"><a href="/motorcycles">motorcycles</a></li>
+                <li class="lili"><a href="/boats">boats</a></li>
+                <li class="lili"><a href="/books">books</a></li>
+                <li class="lili"><a href="/furniture">furniture</a></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cats">
+            <ul>
+              <h3 class="ban">
+                <li style="font-size: medium;font-weight: bold;"><a href="/house">housing</a></li>
+              </h3>
+              <ul class="craigul">
+                <li class="lili"><a href="/realEstate">real estate for sale</a></li>
+                <li class="lili"><a href="/swap">housing swap</a></li>
+                <li class="lili"><a href="/apts">apartments</a></li>
+                <li class="lili"><a href="/parking">parking / storage</a></li>
+                <li class="lili"><a href="/vacay">vacation rentals</a></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cats">
+            <ul>
+              <h3 class="ban">
+                <li style="font-size: medium;font-weight: bold;"><a href="/service">services</a></li>
+              </h3>
+              <ul class="craigul">
+                <li class="lili"><a href="/cleaning">house cleaning</a></li>
+                <li class="lili"><a href="/lawn">lawncare</a></li>
+                <li class="lili"><a href="/cardetail">car detail</a></li>
+                <li class="lili"><a href="/pets">pet services</a></li>
+                <li class="lili"><a href="/catering">catering</a></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cats">
+            <ul>
+              <h3 class="ban">
+                <li style="font-size: medium;font-weight: bold;"><a href="/job">jobs</a></li>
+              </h3>
+              <ul class="craigul">
+                <li class="lili"><a href="/contract">contract work</a></li>
+                <li class="lili"><a href="/odd">odd jobs</a></li>
+                <li class="lili"><a href="/full">full time</a></li>
+                <li class="lili"><a href="/part">part time</a></li>
+                <li class="lili"><a href="/manu">manufacturing</a></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+        <div class="col">
+          <div class="cats">
+            <ul>
+              <h3 class="ban">
+                <li style="font-size: medium;font-weight: bold;"><a href="/community">community</a></li>
+              </h3>
+              <ul class="craigul">
+                <li class="lili"><a href="/activity">activities</a></li>
+                <li class="lili"><a href="/lost">lost and found</a></li>
+                <li class="lili"><a href="/child">childcare</a></li>
+                <li class="lili"><a href="/ride">rideshare</a></li>
+                <li class="lili"><a href="/volunteer">volunteer</a></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="blog-grid-content">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Craigslist - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        a {
+            color: #0000EE;
+            text-decoration: none;
+        }
+
+        h1 {
+            color: #0000EE;
+            font-size: large;
+        }
+
+        .formH2 {
+            background: #e2e2e2;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            background-color: #eee;
+            border-bottom: 1px solid #ccc;
+            padding: 10px 15px;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 15px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            width: 500px;
+            text-align: center;
+            position: relative;
+            bottom: 190px;
+        }
+
+        .accountform {
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            margin: 16px auto;
+            margin-top: 8px;
+            max-width: 400px;
+            padding: 8px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+
+        }
+
+        .form-container h2 {
+            margin-top: 0;
+        }
+
+        .form-container form {
+            margin-top: 10px;
+        }
+
+        .form-container p {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="password"] {
+            min-width: 95%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .form-container1 {
+            padding: 8px;
+            background-color: #EEEEEE;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: medium;
+            position: relative;
+            left: 170px;
+            bottom: 20px;
+        }
+        .form-container2 {
+            padding: 8px;
+            background-color: #EEEEEE;
+            color: black;
+            border: none;
+            cursor: pointer;
+            font-size: medium;
+            position: relative;
+            left: 165px;
+            bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="bg-color-sky-light">
+            <div class="header">
+                <h2 style="margin: 0;"><a href="/">Craigslist</a></h2>
+            </div>
+            <div class="content">
+                <div class="form-container">
+                    <div class="accountform">
+
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <h2 class="formH2">Log In</h2>
+                            <input type="text" name="username" placeholder="Username"><br><br>
+                            <input type="password" name="password" placeholder="Password"><br><br>
+                            <input class="form-container1" type="submit" value="Log in">
+                        </form>
+                    </div>
+                    <p>or</p>
+                    <div class="accountform">
+
+                        <form method="post" action="{% url 'signup' %}">
+                            {% csrf_token %}
+                            <h2 class="formH2">Create an account</h2>
+                            <input type="text" name="username" placeholder="Username"><br><br>
+                            <input type="password" name="password" placeholder="Password"><br><br>
+                            <input class="form-container2" type="submit" value="Sign Up">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
